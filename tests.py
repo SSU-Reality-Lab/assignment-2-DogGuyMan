@@ -114,3 +114,21 @@ cv2.imwrite("results/TODO8_Ratio_matches.png", ratio_vis)
 print("✅ TODO8 (Ratio) match result saved → results/TODO8_Ratio_matches.png")
 
 print("🎯 All TODO1–8 visualizations done! Files saved in 'results/'")
+
+'''
+8단계의 매칭이 더 잘된 이유
+
+SSD는 
+비슷한 디스크립터가 여럿 존재하거나, 아예 대응점이 없는경우에도
+오직 맹목적인 거리 우선을 매칭을 진행하기 때문에
+매칭이 발생하기 떄문에 Outlier가 생긴다. 
+그리고 이것은 추후 이미지 정렬에 있어서 
+오차 제곱합의 결과는 Outlier에 매우 민감하므로
+잘못된 결과를 낼 가능성이 있다
+
+하지만 Ratio Test는 후보1, 2(일명 최근접 후보들) 를 나눠 
+거리 비(Ratio)를 통해 서로의 거리 유사도 검사를 진행 후, 
+만약 1.0f 에 가깝다면 매우 모호 한 것이고, 
+특정 threshold 이하라면 거리상으로 모호하지 않고 확실히 구별될 수 있다는 의미고,
+이러한 케이스만 남겨, 필터링을 진행하기 때문에 Outlier를 상당수 제거할 수 있다.
+'''
