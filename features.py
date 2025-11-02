@@ -465,7 +465,6 @@ class SSDFeatureMatcher(FeatureMatcher):
         # TODO-BLOCK-BEGIN
         
         dist = scipy.spatial.distance.cdist(desc1, desc2, 'euclidean')
-        
 
         for i,l in enumerate(desc1):
             min_dist = np.argmin(dist[i])

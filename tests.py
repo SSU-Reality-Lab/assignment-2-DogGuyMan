@@ -78,14 +78,17 @@ matcher_ratio = features.RatioFeatureMatcher()
 # TODO7 - SSD matching
 # ------------------------------
 # Step 1. SSD matcher를 이용해 두 이미지의 MOPS 디스크립터 매칭을 수행하시오.
-matches_ssd = matcher_ssd.__________(__________, __________)
+
+# "__________"를 채워야 한다.
+
+matches_ssd = matcher_ssd.matchFeatures(desc_mops_1, desc_mops_2)
 
 # Step 2. 거리(distance)를 기준으로 정렬하여 상위 150개의 매칭만 선택하시오.
-matches_ssd = sorted(matches_ssd, key=lambda x: x.__________)[:150]
+matches_ssd = sorted(matches_ssd, key=lambda x: x.distance)[:150]
 
 # Step 3. 매칭 결과를 시각화하여 PNG로 저장하시오.
 ssd_vis = cv2.drawMatches(
-    img1, d1, img2, d2, ________, None,
+    img1, d1, img2, d2, matches_ssd, None,
     matchColor=(0,255,0), singlePointColor=(255,0,0),
     flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
 )
@@ -96,14 +99,14 @@ print("✅ TODO7 (SSD) match result saved → results/TODO7_SSD_matches.png")
 # TODO8 - Ratio matching
 # ------------------------------
 # Step 1. Ratio matcher를 이용해 두 이미지의 MOPS 디스크립터 매칭을 수행하시오.
-matches_ratio = matcher_ratio.__________(__________, __________)
+matches_ratio = matcher_ratio.matchFeatures(desc_mops_1, desc_mops_2)
 
 # Step 2. distance를 기준으로 정렬하여 상위 150개의 매칭만 선택하시오.
-matches_ratio = sorted(matches_ratio, key=lambda x: x.__________)[:150]
+matches_ratio = sorted(matches_ratio, key=lambda x: x.distance)[:150]
 
 # Step 3. 매칭 결과를 시각화하여 PNG로 저장하시오.
 ratio_vis = cv2.drawMatches(
-    img1, d1, img2, d2, ________, None,
+    img1, d1, img2, d2, matches_ratio, None,
     matchColor=(0,255,0), singlePointColor=(255,0,0),
     flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
 )
